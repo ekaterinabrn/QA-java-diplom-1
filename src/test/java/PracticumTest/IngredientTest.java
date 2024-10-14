@@ -4,13 +4,16 @@ package PracticumTest;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+import praktikum.Ingredient;
 import praktikum.IngredientType;
 
+import static org.junit.Assert.assertEquals;
 import static praktikum.IngredientType.FILLING;
 import static praktikum.IngredientType.SAUCE;
 
 @RunWith(Parameterized.class)
 public class IngredientTest {
+    private Ingredient ingredient;
     private final IngredientType type;
     private final String name;
     private final float price;
@@ -29,10 +32,22 @@ public class IngredientTest {
         };
     }
 @Test
-public void ingredientGetPriceTest(){}
-    @Test
-    public void ingredientGetNameTest(){}
-    @Test
-    public void ingredientGetTypeTest(){}
+public void ingredientGetPriceTest(){
+    ingredient = new Ingredient(type, name, price);
+    float actualIngredientPrice = ingredient.getPrice();
+//метод assertEquals с дельтой для допустимой разницы между значениями
+    assertEquals("возвращена ошибочная цена ингредиентов", price, actualIngredientPrice, 0.1f);
+}
+  @Test
+   public void ingredientGetNameTest(){
+       ingredient = new Ingredient(type, name, price);
+       String actualIngredientName =ingredient.getName();
+      assertEquals("возвращено ошибочное имя соуса", name, actualIngredientName);
+    }
+   @Test
+   public void ingredientGetTypeTest(){
+       ingredient = new Ingredient(type, name, price);
+       assertEquals("неверный тип соуса",type, ingredient.getType());
+   }
 
 }
