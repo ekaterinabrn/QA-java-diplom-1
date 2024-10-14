@@ -7,18 +7,6 @@ import praktikum.Bun;
 
 import static org.junit.Assert.assertEquals;
 
-//public Bun(String name, float price) {
-//    this.name = name;
-//    this.price = price;
-//}
-//
-//public String getName() {
-//    return name;
-//}
-//
-//public float getPrice() {
-//    return price;
-//}
 @RunWith(Parameterized.class)
 public class BunTest {
     private final String name;
@@ -28,21 +16,21 @@ public class BunTest {
         this.name = name;
         this.price = price;
     }
-    @Parameterized.Parameters(name = "Тестовые данные: {0} {1}")
+    @Parameterized.Parameters(name = "данные: {0} {1} ")
     public static Object[][] getData() {
-        return new Object[][]{{}};}
+        return new Object[][]{{"brioche bun", 3.14f },{"ciabatta", 0.001F},{"sesame bun", 5.67f}};}
     @Test
     public void getBunNameTest(){
         Bun bun = new Bun(name, price);
         String actualBunName = bun.getName();
-        assertEquals("названия булочек должны совпадать ", name,actualBunName);
+        assertEquals("возвращено не верное название  булочки  ", name, actualBunName);
     }
     @Test
     public void getBunPriceTest() {
         Bun bun = new Bun(name, price);
         float actualBunPrice = bun.getPrice();
-
-        assertEquals("цена на булочки должна совпадать ", price, actualBunPrice);
+//метод assertEquals с дельтой для допустимой разницы между значениями
+        assertEquals("возвращена ошибочная цена булочки  ", price, actualBunPrice, 0.1f);
     }
 
 }
