@@ -1,2 +1,3 @@
 запуск отчета покрытия mvn verify
 открыть в папке target/site/jacoco/
+пуш git add -f target/site/jacoco/
